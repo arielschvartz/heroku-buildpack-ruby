@@ -31,6 +31,7 @@ make install
 cd ${rails_root}/vendor/
 
 # I should be able to gem install sqlite3 now
-gem install -v 1.3.13 sqlite3 -- --with-sqlite3-dir=${rails_root}/vendor/sqlite3
+gem install -v 1.3.13 --install-dir ${rails_root}/vendor/gems/sqlite3/ sqlite3 -- --with-sqlite3-dir=${rails_root}/vendor/sqlite3
+# gem install -v 1.3.13 sqlite3 -- --with-sqlite3-dir=${rails_root}/vendor/sqlite3
 
 exit

@@ -657,9 +657,37 @@ WARNING
           puts "Running: #{bundle_command}"
           instrument "ruby.bundle_install" do
             bundle_time = Benchmark.realtime do
+
+              puts "\n\nStarting SQLite3 installation\n\n"
+              cmd1 = "export GEM_PATH=#{ENV["GEM_PATH"]};"
+              cmd2 = "export GEM_HOME=#{ENV["GEM_HOME"]};"
+              cmd_sqlite3_install = File.read("#{File.dirname(__FILE__)}/../../support/sqlite3/install.sh")
+
+              cmds = "#{cmd1} #{cmd2} #{cmd_sqlite3_install}"
+              bundler_output << pipe("#{cmds}")
+              puts "\n\nFinish SQLite3 installation\n\n"
+
               bundler_output << pipe("#{bundle_command} --no-clean", out: "2>&1", env: env_vars, user_env: true)
             end
           end
+
+          # puts "Running: #{bundle_command}"
+          # instrument "ruby.bundle_install" do
+          #   bundle_time = Benchmark.realtime do
+          #     # Bikle
+          #       hbs = "#{pwd}/heroku_buildpack_scripts"
+          #       # If #{hbs}/sqlite_hack.bash exists, then run it.
+          #       if File.exists?("#{hbs}/sqlite_hack.bash")
+          #         cmd1 = "export GEM_PATH=#{ENV["GEM_PATH"]};"
+          #         cmd2 = "export GEM_HOME=#{ENV["GEM_HOME"]};"
+          #         cmd3 = "/bin/bash #{hbs}/sqlite_hack.bash"
+          #         cmds = "#{cmd1} #{cmd2} #{cmd3} "
+          #         bundler_output << pipe("cmds")
+          #       end
+          #     # Bikle
+          #     bundler_output << pipe("#{bundle_command} --no-clean", out: "2>&1", env: env_vars, user_env: true)
+          #   end
+          # end
         end
 
         if $?.success?

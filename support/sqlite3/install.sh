@@ -3,18 +3,26 @@
 # I use this script to help me enhance the ability of 
 # heroku-buildpack
 
+echo Starting SQLite3 Installation
+
 rails_root=`pwd`
 
-echo rails_root is
+echo Location is
 echo $rails_root
-cd ${rails_root}/vendor/
 
 # I should install sqlite3 software locally under Rails.root
 
 mkdir -p ${rails_root}/vendor/sqlite3
 mkdir -p ${rails_root}/vendor/gems/sqlite3
 
-tar zxf  ${rails_root}/vendor/sqlite-autoconf-3230100.tar.gz 
+cd ${rails_root}/vendor/
+
+echo Startind download...
+wget https://www.sqlite.org/2018/sqlite-autoconf-3230100.tar.gz
+echo Download finished.
+
+tar zxf sqlite-autoconf-3230100.tar.gz
+
 cd sqlite-autoconf-3230100/
 ./configure --prefix=${rails_root}/vendor/sqlite3
 make

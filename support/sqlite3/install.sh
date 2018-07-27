@@ -21,7 +21,7 @@ echo Startind download...
 wget https://www.sqlite.org/2018/sqlite-autoconf-3230100.tar.gz
 echo Download finished.
 
-tar zxf ${rails_root}/sqlite-autoconf-3230100.tar.gz
+tar zxf ${rails_root}/vendor/sqlite-autoconf-3230100.tar.gz
 
 cd ${rails_root}/vendor/sqlite-autoconf-3230100/
 ./configure --prefix=${rails_root}/vendor/sqlite3

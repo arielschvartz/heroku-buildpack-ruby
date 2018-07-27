@@ -23,7 +23,7 @@ echo Download finished.
 
 tar zxf ${rails_root}/sqlite-autoconf-3230100.tar.gz
 
-cd ${rails_root}/sqlite-autoconf-3230100/
+cd ${rails_root}/vendor/sqlite-autoconf-3230100/
 ./configure --prefix=${rails_root}/vendor/sqlite3
 make
 make install
